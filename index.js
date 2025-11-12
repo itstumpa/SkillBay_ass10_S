@@ -6,7 +6,7 @@ const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(cors({origin: ["http://localhost:5173"],credentials: true,}));
+app.use(cors({origin: ["http://localhost:5173", "https://skillbay-ass10-s.netlify.app", "https://skill-bay-ass10-s.vercel.app"],credentials: true,}));
 app.use(express.json());
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.ielazur.mongodb.net/?appName=Cluster0`;
@@ -35,7 +35,7 @@ async function run() {
     app.get('/', (req, res) => {
       res.send('Server is running properly 🚀');
     });
-    
+
 // users api start here 
 app.get("/users", async (req, res) => {
   try {
@@ -145,7 +145,7 @@ app.post('/users', async (req, res) => {
 
 app.post('/applications', async (req, res) => {
   try {
-    const application = req.body; // form data from frontend
+    const application = req.body; 
     const result = await applicationCollection.insertOne(application);
     res.status(201).send(result);
   } catch (error) {

@@ -31,11 +31,6 @@ async function run() {
     const applicationCollection = db.collection('applications');
 
 
-    // app.get('/users', async (req, res) => {
-    //   const users = await usersCollection.find().toArray();
-    //   res.send(users);
-    // });
-
 
     app.get('/', (req, res) => {
       res.send('Server is running properly 🚀');

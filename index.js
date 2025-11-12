@@ -35,7 +35,8 @@ async function run() {
     app.get('/', (req, res) => {
       res.send('Server is running properly 🚀');
     });
-
+    
+// users api start here 
 app.get("/users", async (req, res) => {
   try {
     // const email = req.query.email;
@@ -65,9 +66,7 @@ app.get("/users", async (req, res) => {
     }
 
     res.send(result);
-  // } catch (error) {
-    // res.status(500).send({ message: 'Error fetching job', error });
-  // }
+  
 });
 
  

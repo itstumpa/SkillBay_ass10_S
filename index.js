@@ -6,7 +6,8 @@ const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(cors({origin: ["http://localhost:5173", "https://skillbay-ass10-s.netlify.app", "https://skill-bay-ass10-s.vercel.app"],credentials: true,}));
+app.use(cors({origin: ["http://localhost:5173", "https://skillbay-ass10-c.netlify.app", "https://skill-bay-ass10-s.vercel.app"],
+  credentials: true,}));
 app.use(express.json());
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.ielazur.mongodb.net/?appName=Cluster0`;

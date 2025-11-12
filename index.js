@@ -92,22 +92,6 @@ app.delete("/users/:id", async (req, res) => {
 });
 
 // ✅ Update job info
-// app.put("/users/:id", async (req, res) => {
-//   try {
-//     const id = req.params.id;
-//     const updatedData = req.body;
-//     const query = { _id: new ObjectId(id) };
-//     const updateDoc = {
-//       $set: updatedData,
-//     };
-//     const result = await usersCollection.updateOne(query, updateDoc);
-//     res.send(result);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).send({ message: "Failed to update job" });
-//   }
-// });
-
 
 app.put("/users/:id", async (req, res) => {
   try {
@@ -136,7 +120,7 @@ app.post('/users', async (req, res) => {
   try {
     const newUser = req.body;
     const { email } = req.body;
-    newUser.posted_Date = new Date();
+    newUser.postedDate = new Date();
     // Check for existing user
     const existingUser = await usersCollection.findOne({ userEmail: email});
     console.log(existingUser)

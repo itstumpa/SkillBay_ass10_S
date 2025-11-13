@@ -21,7 +21,6 @@ const client = new MongoClient(uri, {
 });
 
 
-
 async function run() {
   try {
     // await client.connect();
@@ -156,13 +155,41 @@ app.post('/applications', async (req, res) => {
 });
 
 
+// app.get("/applications", async (req, res) => {
+//   try {
+//     const applications = await applicationCollection.find().toArray();
+//     res.send(applications);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send({ message: "Failed to fetch applications" });
+//   }
+// });
+
+
 app.get("/applications", async (req, res) => {
   try {
-    const applications = await applicationCollection.find().toArray();
-    res.send(applications);
+    const email = req?.query.email;
+    
+    console.log("🔍 Received email query:", email);
+    
+    if (!email) {
+      console.log("⚠️ No email provided");
+      return res.json([]);
+    }
+    
+    const query = { applicator_email: email };
+    console.log("📋 MongoDB Query:", JSON.stringify(query));
+    
+    const applications = await applicationCollection.find(query).toArray();
+    
+    console.log("✅ Found applications:", applications.length);
+    console.log("📦 Sample:", applications[0]);
+    
+    res.json(applications);
+    
   } catch (error) {
-    console.error(error);
-    res.status(500).send({ message: "Failed to fetch applications" });
+    console.error("❌ Error:", error);
+    res.status(500).json([]);
   }
 });
 
